@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+    - 'main'
+name: archive
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+        submodules: recursive
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: mcheyne-reading-plan
+        path: |
+          .
+          !**/.git*
